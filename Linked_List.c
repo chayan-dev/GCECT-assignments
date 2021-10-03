@@ -4,18 +4,17 @@ struct Node
 {
     int data;
     struct Node *next;
-};
-void create(struct Node *first,struct Node *last,int arr[],int n);
-void display(struct Node *first);
+}*first=NULL,*last=NULL;
+void create(int arr[],int n);
+void display();
 int main(void)
 {
-    struct Node *first=NULL,*last=NULL;
     int arr[]={10,20,30,40,50};
     int n=5;
-    create(first,last,arr,n);
-    display(first);
+    create(arr,n);
+    display();
 }
-void create(struct Node *first,struct Node *last,int arr[],int n)
+void create(int arr[],int n)
 {
     struct Node *temp;
     first=(struct Node*)malloc(sizeof(struct Node));
@@ -31,7 +30,7 @@ void create(struct Node *first,struct Node *last,int arr[],int n)
         last=temp;
     }
 }
-void display(struct Node *first)
+void display()
 {
     struct Node *h=first;
     if(h==NULL)
