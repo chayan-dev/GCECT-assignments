@@ -8,6 +8,7 @@ struct Node
 void create(int arr[],int n);
 void display();
 int count_nodes(struct Node *first);
+int deletNode(int n);
 void insert(int pos,int d);
 int main(void)
 {
@@ -22,11 +23,9 @@ int main(void)
     create(arr,n);
     display();
     int d,pos;
-    printf("Enter the number which you want to insert:-\n");
-    scanf("%d",&d);
-    printf("Enter the position in which you want to insert:-\n");
+    printf("Enter the position in which you want to delete:-\n");
     scanf("%d",&pos);
-    insert(pos,d);
+    printf("The deleted element is %d\n",deletNode(pos));
     display();
 }
 void create(int arr[],int n)
@@ -101,4 +100,38 @@ void insert(int pos,int d)
             p->next=temp;
         }
     }
+}
+int deletNode(int n)
+{
+    struct Node *p=first;
+    struct Node *q=NULL;
+    int x=-1;
+    if(n<1||n>count_nodes(p))
+    {
+        return x;
+    }
+    else
+    {
+        if(n==1)
+        {
+            q=first;
+            x=first->data;
+            first=first->next;
+            free(q);
+            return x;
+        }  
+        else
+        {
+            for(int i=0;i<=n-1;i++)
+            {
+                q=p;
+                p=p->next;
+            }
+            q->next=p->next;
+            x=p->data;
+            free(p);
+            return x;
+        } 
+    }
+    
 }
