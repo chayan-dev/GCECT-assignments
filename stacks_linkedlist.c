@@ -18,7 +18,8 @@ int main(void)
     push(50);
     display();
     printf("Result after popping is -> %d\n",pop());
-    display(top);
+    display();
+    printf("Result of peek function is -> %d\n",peek(3));
 
 }
 void push(int x)
