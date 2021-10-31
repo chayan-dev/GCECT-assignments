@@ -1,81 +1,80 @@
 #include<stdio.h>
 #include<stdlib.h>
-struct Node
+struct Node 
 {
     int data;
-    int top;
-    struct Node *next;
-}*first=NULL,*last=NULL;
-void push(int n);
-void display();
+    struct Node* next;
+}*top=NULL;
+void push(int x);
 int pop();
+int peek(int pos);
+void display();
 int main(void)
 {
-    int n;
-    printf("Enter the size of the Linked List:-");
-    scanf("%d",&n);
-    for(int i=0;i<n;i++)
-    {
-        int t;
-        scanf("%d",&t);
-        push(t);
-    }
+    push(10);
+    push(20);
+    push(30);
+    push(40);
+    push(50);
     display();
-    printf("result after popping->%d\n",pop());
-    printf("stack after popping->\n");
-    display();
+    printf("Result after popping is -> %d\n",pop());
+    display(top);
+
 }
-void push(int n)
+void push(int x)
 {
-    if(first==NULL)
+    struct Node *t=(struct Node*)malloc(sizeof(struct Node));
+    if(t==NULL)
     {
-        first=(struct Node *)malloc(sizeof(struct Node));
-        last=first;
-        first->data=n;
-        first->next=NULL;
-        
+       printf("Stack is Full\n");
     }
     else
     {
-        struct Node *temp;
-        temp=(struct Node *)malloc(sizeof(struct Node));
-        temp->data=n;
-        temp->next=NULL;
-        last->next=temp;
-        last=temp;
-    }
-}
-void display()
-{
-    struct Node *h=first;
-    if(h==NULL)
-    {
-        printf("h is null\n");
-    }
-    else
-    {
-        while(h!=NULL)
-        {
-            printf("%d ",h->data);
-            h=h->next;
-        }
-        printf("\n");
+        t->data=x;
+        t->next=top;
+        top=t;
     }
 }
 int pop()
 {
-    struct Node *t;
     int x=-1;
-    if(first==NULL)
+    struct Node *p=(struct Node*)malloc(sizeof(struct Node));
+    if(top==NULL)
     {
         printf("Stack is empty\n");
     }
     else
     {
-        t=first;
-        first=first->next;
-        x=t->data;
-        free(t);
+        p=top;
+        top=top->next;
+        x=p->data;
+        free(p);
     }
     return x;
+}
+
+int peek(int pos)
+{
+    int x=-1;
+    struct Node *p=top;
+    for(int i=0;p!=NULL && i<pos-1;i++)
+    {
+        p=p->next;
+    }
+    if(p!=NULL)
+    {
+        x=p->data;
+        return x;
+    }
+    return x;
+}
+void display()
+{
+    struct Node *p=top;
+    while(p!=NULL)
+    {
+        printf("%d ",p->data);
+        p=p->next;
+    }
+    printf("\n");
 }
