@@ -15,7 +15,7 @@ int main(void)
     int p;
     do
     {
-        printf("Enter 1 to create a doubly Linked list of user defined size (The size of Linked List can be increases or devreased later):\n");
+        printf("Enter 1 to create a doubly Linked list of user defined size (The size of Linked List can be increases or decreased later):\n");
         printf("Enter 2 to insert any value at a user defined valid position in the doubly Linked list:\n");
         printf("Enter 3 to display the values in the doubly Linked list:\n");
         scanf("%d",&p);
@@ -95,7 +95,7 @@ void insert(struct Node *p, int val,int pos)
     }
     if(pos==0)
     {
-        t=(struct Node*)malloc(sizeof(struct Node));;
+        t=(struct Node*)malloc(sizeof(struct Node));
         t->data=val;
         t->prev=NULL;
         t->next=p;
@@ -109,7 +109,7 @@ void insert(struct Node *p, int val,int pos)
         {
             q=q->next;
         }
-        t=(struct Node*)malloc(sizeof(struct Node));;
+        t=(struct Node*)malloc(sizeof(struct Node));
         t->data=val;
         t->prev=q;
         t->next=q->next;
