@@ -8,7 +8,7 @@ struct Node
 }*first=NULL,*last=NULL;
 void create(int val);
 int len(struct Node *p);
-void insert(struct Node *p, int val,int pos);
+void insert(int val,int pos);
 void display();
 int main(void)
 {
@@ -39,7 +39,7 @@ int main(void)
             scanf("%d",&val);
             printf("Enter the position where you want to insert the value:");
             scanf("%d",&pos);
-            insert(first,val,pos);
+            insert(val,pos);
         }
         if(p==3)
         {
@@ -85,11 +85,11 @@ int len(struct Node *p)
     return c;
 }
 
-void insert(struct Node *p, int val,int pos)
+void insert(int val,int pos)
 {
     struct Node *t;
     struct Node *q;
-    if(pos<0||pos>len(p))
+    if(pos<0||pos>len(first))
     {
         return ;
     }
@@ -98,13 +98,13 @@ void insert(struct Node *p, int val,int pos)
         t=(struct Node*)malloc(sizeof(struct Node));
         t->data=val;
         t->prev=NULL;
-        t->next=p;
-        p->prev=t;
-        p=t;
+        t->next=first;
+        first->prev=t;
+        first=t;
     }
     else
     {
-        q=p;
+        q=first;
         for(int i=0;i<pos-1;i++)
         {
             q=q->next;
